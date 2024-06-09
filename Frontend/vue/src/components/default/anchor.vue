@@ -1,21 +1,25 @@
 <template>
-    <input type="text"
-        refs="inputRef"
-        v-bind:readonly="isReadOnly"
-    />
+    <a
+        v-bind:href="link"
+        v-bind:target="target"
+    >
+        {{ value }}
+    </a>
 </template>
 
 <script>
 export default {
-    name: 'TextComponent',
-    data() {
-        return {
-        isReadOnly: true
-    }
+    name: 'AnchorComponent',
+    data(){
+        return{
+            value: "",
+            link: "",
+            target: ""
+        }
     },
     method:{
         /**
-         * text 설정
+         * anchor 라벨 값 설정
          * @function
          * @instance
          * @memberof
@@ -29,11 +33,11 @@ export default {
             if(!info.v){
                 return Error("Please enter a value");
             }
-            this.$refs.inputRef.value = info.v;
+            this.value = info.v;
         },
 
         /**
-         * text 값 반환
+         * anchor 라벨값 반환
          * @function
          * @instance
          * @memberof
@@ -41,25 +45,34 @@ export default {
          * @example
          */
         getValue: function(){
-            return this.$refs.inputRef.value;
+            return this.value;
         },
 
         /**
-         * readOnly 설정
+         * href 설정
          * @function
          * @instance
          * @memberof
          * @param {Object} info 
-         * @param {Boolean} info.v
+         * @param {String} info.v
          * @example
          */
-        setReadOnly: function(info){
+        setLink: function(info){
+            
+            //값이 없으면 종료
+            if(!info.v){
+                return Error("Please enter a value");
+            }
+            this.link = info.v;
+        },
+
+        setTarget: function(info){
 
             //값이 없으면 종료
             if(!info.v){
                 return Error("Please enter a value");
             }
-            this.isReadOnly = info.v;
+            this.target = info.v;
         }
     }
 }
