@@ -31,7 +31,7 @@ export default {
 
             //값이 없으면 종료
             if(!info.v){
-                return Error("Please enter a value");
+                throw Error("Please enter a value");
             }
             this.value = info.v;
         },
